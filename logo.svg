@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <!-- Background -->
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1a2e;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#16213e;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffd700;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#ffec8b;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#daa520;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="dinoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#2d5a27;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1e3d1a;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Rounded Square Background -->
+  <rect x="20" y="20" width="472" height="472" rx="60" ry="60" fill="url(#bgGradient)" stroke="url(#goldGradient)" stroke-width="4"/>
+  
+  <!-- Circuit Board Pattern (subtle) -->
+  <g opacity="0.15" stroke="#00ff88" stroke-width="2" fill="none">
+    <path d="M60 100 L100 100 L100 80"/>
+    <path d="M60 150 L120 150 L120 130 L140 130"/>
+    <path d="M452 412 L412 412 L412 432"/>
+    <path d="M452 362 L392 362 L392 342 L372 342"/>
+    <circle cx="100" cy="80" r="4" fill="#00ff88"/>
+    <circle cx="140" cy="130" r="4" fill="#00ff88"/>
+    <circle cx="412" cy="432" r="4" fill="#00ff88"/>
+    <circle cx="372" cy="342" r="4" fill="#00ff88"/>
+  </g>
+  
+  <!-- T-Rex Body Silhouette -->
+  <g transform="translate(95, 130)">
+    <!-- Tail -->
+    <path d="M20 220 Q-10 200 20 180 Q30 175 40 185 L50 200" fill="url(#dinoGradient)" stroke="#00ff88" stroke-width="2"/>
+    
+    <!-- Body -->
+    <ellipse cx="120" cy="200" rx="90" ry="70" fill="url(#dinoGradient)" stroke="#00ff88" stroke-width="2"/>
+    
+    <!-- Leg -->
+    <path d="M150 250 L150 290 L170 290 L180 270" fill="url(#dinoGradient)" stroke="#00ff88" stroke-width="2"/>
+    <path d="M155 285 L165 285" stroke="#00ff88" stroke-width="2"/>
+    
+    <!-- Arm (tiny T-Rex arm) -->
+    <path d="M180 180 L210 185 L210 195 L180 195" fill="url(#dinoGradient)" stroke="#00ff88" stroke-width="2"/>
+    
+    <!-- Neck -->
+    <path d="M190 160 Q200 140 210 130" fill="none" stroke="url(#dinoGradient)" stroke-width="25"/>
+    
+    <!-- Head -->
+    <ellipse cx="260" cy="110" rx="70" ry="45" fill="url(#dinoGradient)" stroke="#00ff88" stroke-width="2"/>
+    
+    <!-- Snout -->
+    <path d="M310 100 L360 100 L370 115 L360 130 L310 130 Z" fill="url(#dinoGradient)" stroke="#00ff88" stroke-width="2"/>
+    
+    <!-- Eye -->
+    <circle cx="280" cy="95" r="12" fill="#1a1a2e" stroke="#00ff88" stroke-width="2"/>
+    <circle cx="283" cy="92" r="5" fill="#00ff88"/>
+    
+    <!-- Nostril -->
+    <ellipse cx="345" cy="110" rx="4" ry="6" fill="#00ff88"/>
+    
+    <!-- Teeth (3 small triangles) -->
+    <path d="M320 130 L325 140 L330 130" fill="#ffffff"/>
+    <path d="M335 130 L340 145 L345 130" fill="#ffffff"/>
+    <path d="M350 130 L355 142 L360 130" fill="#ffffff"/>
+    
+    <!-- Crown -->
+    <g transform="translate(250, 25)">
+      <path d="M0 55 L10 20 L25 40 L40 10 L55 40 L70 25 L85 55 Z" fill="url(#goldGradient)" stroke="#b8860b" stroke-width="2"/>
+      <!-- Crown jewels -->
+      <circle cx="40" cy="25" r="6" fill="#ff6b6b"/>
+      <circle cx="25" cy="35" r="4" fill="#4ecdc4"/>
+      <circle cx="55" cy="35" r="4" fill="#4ecdc4"/>
+      <circle cx="10" cy="45" r="3" fill="#ffd700"/>
+      <circle cx="70" cy="45" r="3" fill="#ffd700"/>
+    </g>
+    
+    <!-- Circuit dots on body -->
+    <circle cx="100" cy="180" r="5" fill="#00ff88"/>
+    <circle cx="130" cy="210" r="4" fill="#00ff88"/>
+    <circle cx="160" cy="175" r="3" fill="#00ff88"/>
+    <line x1="100" y1="180" x2="115" y2="180" stroke="#00ff88" stroke-width="2"/>
+  </g>
+  
+  <!-- Text: DINO DYNASTY -->
+  <text x="256" y="400" text-anchor="middle" font-family="Arial Black, sans-serif" font-size="32" font-weight="bold" fill="url(#goldGradient)">
+    DINO DYNASTY
+  </text>
+  
+  <!-- Text: OS -->
+  <text x="256" y="435" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" fill="#00ff88">
+    OS: FOUNDATION
+  </text>
+</svg>

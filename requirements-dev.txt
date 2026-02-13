@@ -1,0 +1,4 @@
+# Skill Scanner Development Dependencies
+# Optional - scanner itself requires no dependencies
+pytest>=7.0.0
+pytest-cov>=4.0.0

@@ -1,0 +1,61 @@
+name: Security Scan
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+  schedule:
+    # Run weekly scan every Sunday at 2 AM UTC
+    - cron: '0 2 * * 0'
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          
+      - name: Run Security Scanner
+        run: |
+          python skill_scanner.py --dir ./ --output-json scan_results.json
+          cat scan_results.json
+          
+      - name: Check for critical findings
+        run: |
+          if grep -q '"level": "CRITICAL"' scan_results.json; then
+            echo "❌ Critical security issues found!"
+            exit 1
+          fi
+          
+      - name: Upload scan results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: scan-results
+          path: scan_results.json
+          
+  test:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          
+      - name: Test Safe Skill
+        run: |
+          python skill_scanner.py --file test_safe_skill.py
+          
+      - name: Test Malicious Skill
+        run: |
+          python skill_scanner.py --file test_malicious_skill.py
+          # Should find issues, exit code may be non-zero

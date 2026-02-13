@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  # Clone & Scan - runs once then stops
+  scanner:
+    build: 
+      context: .
+      dockerfile: Dockerfile.scan
+    volumes:
+      - ./scan_results:/results
+    # AIR-GAP: No network access!
+    network_mode: none
+    restart: "no"
+    
+# Volumes are ephemeral - will be deleted with docker-compose down -v
+volumes:
+  scan_results:

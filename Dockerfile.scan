@@ -1,0 +1,29 @@
+# DinoScan Docker Scanner
+# Clones repo, scans, generates report, then nukes itself
+
+FROM python:3.11-slim
+
+WORKDIR /app
+
+# Copy scanner
+COPY skill_scanner.py ./
+
+# Install git
+RUN apt-get update && apt-get install -y git && rm -rf /var/lib/apt/lists/*
+
+# Default: scan OpenClaw skills (can override)
+ARG REPO_URL=https://github.com/openclaw/skills.git
+ARG REPO_NAME=skills
+
+ENV REPO_URL=$REPO_URL
+ENV REPO_NAME=$REPO_NAME
+
+# Clone, scan, report, done!
+CMD echo "Cloning $REPO_URL..." && \
+    git clone --depth 1 $REPO_URL /repo && \
+    echo "Scanning..." && \
+    python skill_scanner.py --dir /repo --json --report && \
+    echo "=== REPORT ===" && \
+    cat audit_report.md && \
+    echo "=== END REPORT ===" && \
+    echo "Container will self-destruct on docker-compose down -v"

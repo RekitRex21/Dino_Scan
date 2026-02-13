@@ -1,0 +1,15 @@
+# Ignore temp files and reports
+temp_scan/
+reports/
+scan_results/
+*.json
+*.log
+
+# Docker
+.dockerignore
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/

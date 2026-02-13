@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  # Fetcher: Clone repo into Docker volume (has network)
+  fetcher:
+    image: python:3.11-slim
+    volumes:
+      - repo_data:/repo
+    command: >
+      sh -c "apt-get update && apt-get install -y git && rm -rf /var/lib/apt/lists/* && git clone --depth 1 ${REPO_URL:-https://github.com/openclaw/skills.git} /repo"
+    environment:
+      - REPO_URL=${REPO_URL}
+
+  # Auditor: Scan with ZERO network (air-gap)
+  auditor:
+    build: .
+    volumes:
+      - repo_data:/repo:ro
+      - ./reports:/out
+    # AIR-GAP: No network!
+    network_mode: none
+    depends_on:
+      fetcher:
+        condition: service_completed_successfully
+    command: >
+      sh -c "cd /repo && python /app/skill_scanner.py --dir /repo --json --output /out/scan_results.json --report --output /out/report.md"
+    
+  # Self-destruct timer: Kill after 5 min max
+  killer:
+    image: python:3.11-slim
+    network_mode: none
+    entrypoint: ["sh", "-c"]
+    command: ["sleep 300 && docker-compose down -v"]
+    depends_on:
+      - auditor
+    restart: "no"
+
+volumes:
+  repo_data:
