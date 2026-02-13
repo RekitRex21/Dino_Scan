@@ -1,3 +1,9 @@
+<div align="center">
+
+![Dino-Scan Logo](Dino-Scan-Logo.png)
+
+</div>
+
 <<<<<<< HEAD
 # DinoScan 🦖🛡️
 
