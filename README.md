@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # DinoScan 🦖🛡️
 
 DinoScan - Security scanner for OpenClaw skills. Built for the Dino Dynasty ecosystem.
@@ -472,3 +473,7 @@ Built for the OpenClaw ecosystem to help users safely discover and install commu
 **Author**: OpenClaw Community  
 **Version**: 2.0  
 **Last Updated**: 2026-02-09
+=======
+# Dino_Scan
+**DinoScan** 🦖🛡️  Air-gapped security scanner for OpenClaw skills. Detects prompt injection, credential theft, code execution &amp; data exfil in isolated Docker—suspicious code can't phone home. Built to hunt ClawHavoc (AMOS stealer). SHA-256 hashing, JSON/Markdown reports, kill-list export. Scan first, trust never.  🔥
+>>>>>>> 24b99902e3c542029b9c8e63ad5c587aff55b6b9
