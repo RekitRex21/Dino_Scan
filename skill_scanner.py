@@ -347,7 +347,7 @@ def scan_url(url: str, return_findings: bool = False):
     return None, 0
 
 
-def generate_markdown_report(results: list, output_file: str = "audit_report.md"):
+def generate_markdown_report(results: list, output_file: str = "audit_report.md", repo_url: str = None):
     """Generate Markdown evidence report."""
     timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     
@@ -355,10 +355,12 @@ def generate_markdown_report(results: list, output_file: str = "audit_report.md"
     high = [r for r in results if r.get('recommendation') == '[HIGH RISK]']
     safe = [r for r in results if r.get('recommendation') == '[SAFE]']
     
+    repo_line = f"**Repository:** {repo_url}\n" if repo_url else ""
+    
     report = f"""# OpenClaw Security Audit Report
 
 **Generated:** {timestamp}
-**Total Files Scanned:** {len(results)}
+{repo_line}**Total Files Scanned:** {len(results)}
 
 ---
 
@@ -456,6 +458,7 @@ def main():
     parser.add_argument('--output', '-o', help='Output file')
     parser.add_argument('--report', '-r', action='store_true', help='Generate Markdown report')
     parser.add_argument('--kill-list', '-k', action='store_true', help='Generate kill list for community')
+    parser.add_argument('--repo-url', help='GitHub repo URL (e.g., https://github.com/user/repo)')
     
     args = parser.parse_args()
     
@@ -499,7 +502,14 @@ def main():
     
     # Output
     if args.json and results:
-        output = json.dumps(results, indent=2)
+        # Wrap results with metadata
+        output_data = {
+            "repo_url": args.repo_url,
+            "scanned_at": datetime.now().isoformat(),
+            "total_files": len(results),
+            "results": results
+        }
+        output = json.dumps(output_data, indent=2)
         if args.output:
             with open(args.output, 'w', encoding='utf-8') as f:
                 f.write(output)
@@ -509,7 +519,7 @@ def main():
     
     # Report
     if args.report and results:
-        generate_markdown_report(results, args.output or "audit_report.md")
+        generate_markdown_report(results, args.output or "audit_report.md", args.repo_url)
     
     # Kill List
     if args.kill_list and results:

@@ -23,7 +23,7 @@ jobs:
           
       - name: Run Security Scanner
         run: |
-          python skill_scanner.py --dir ./ --output-json scan_results.json
+          python skill_scanner.py --dir ./ --json --output scan_results.json
           cat scan_results.json
           
       - name: Check for critical findings
