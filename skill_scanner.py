@@ -487,12 +487,28 @@ def main():
     parser.add_argument('--report', '-r', action='store_true', help='Generate Markdown report')
     parser.add_argument('--kill-list', '-k', action='store_true', help='Generate kill list for community')
     parser.add_argument('--repo-url', help='GitHub repo URL (e.g., https://github.com/user/repo)')
+    parser.add_argument('--dashboard', action='store_true', help='Rich CLI dashboard output')
+    parser.add_argument('--quiet', '-q', action='store_true', help='Minimal output')
     
     args = parser.parse_args()
     
-    print(f"\n{'='*60}")
-    print(f"DINOSCAN v1 - Security Scanner")
-    print(f"{'='*60}")
+    # Import dashboard
+    if args.dashboard:
+        try:
+            from dashboard import print_dashboard_header, create_results_table, print_summary, dashboard_print
+            print_dashboard_header()
+            if not args.quiet:
+                dashboard_print("Scanning...", "cyan")
+        except ImportError:
+            print("Warning: rich not installed. Installing...")
+            import subprocess
+            subprocess.run(['pip', 'install', 'rich'])
+            from dashboard import print_dashboard_header, create_results_table, print_summary, dashboard_print
+            print_dashboard_header()
+    else:
+        print(f"\n{'='*60}")
+        print(f"DINOSCAN v1 - Security Scanner")
+        print(f"{'='*60}")
     
     results = []
     
@@ -552,6 +568,34 @@ def main():
     # Kill List
     if args.kill_list and results:
         generate_kill_list(results, "kill_list.md")
+    
+    # Dashboard output
+    if args.dashboard and results:
+        try:
+            from dashboard import create_results_table, print_summary
+            
+            # Calculate stats
+            stats = {'total': len(results), 'DANGER': 0, 'HIGH': 0, 'MEDIUM': 0, 'SAFE': 0}
+            findings_list = []
+            
+            for r in results:
+                severity = r.get('severity', 'SAFE')
+                stats[severity] = stats.get(severity, 0) + 1
+                if severity in ['CRITICAL', 'HIGH', 'MEDIUM']:
+                    findings_list.append(r)
+            
+            stats['risk_score'] = calculate_risk_score(findings_list)
+            
+            # Print results
+            if findings_list:
+                table = create_results_table(findings_list)
+                if table:
+                    console.print(table)
+            
+            print_summary(stats)
+            
+        except ImportError:
+            print("Install rich for dashboard: pip install rich")
 
 
 if __name__ == "__main__":

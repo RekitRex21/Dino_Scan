@@ -262,6 +262,28 @@ FINDINGS (3):
 
 ---
 
+## 🎨 Rich CLI Dashboard
+
+For a beautiful terminal dashboard, install `rich` and use the `--dashboard` flag:
+
+```bash
+# Install rich
+pip install rich
+
+# Run with dashboard
+python skill_scanner.py --dir /path/to/skills/ --dashboard
+```
+
+This shows:
+- 🦖 ASCII art header
+- 📊 Color-coded results table
+- 📈 Summary with risk score
+- 🔴🟠🟡🟢 Severity indicators
+
+---
+
+## Credits
+
 ## Risk Scoring Algorithm
 
 The risk score is calculated as a weighted average:
