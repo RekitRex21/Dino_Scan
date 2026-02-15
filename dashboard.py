@@ -15,12 +15,37 @@ try:
 except ImportError:
     RICH_AVAILABLE = False
 
-console = Console()
+import sys
+import os
+
+# Console will be created when needed
+_console = None
+
+def get_console():
+    global _console
+    if _console is None:
+        _console = Console()
+    return _console
 
 def print_dashboard_header():
     """Print ASCII art header"""
     if RICH_AVAILABLE:
-        header = Text("""
+        try:
+            console = get_console()
+            # Use ASCII-safe header for Windows
+            if sys.platform == "win32":
+                header = Text("""
+DINO SCAN v1 - Security Scanner
+=================================
+    _                     _           
+   / \  _   _ _ __  _ __ (_)_ __ ___ 
+  / _ \| | | | '_ \| '__| | '_ ` _ \
+ / ___ \ |_| | |_) | |  | | | | | | |
+/_/   \_\__,_| .__/|_|  |_|_| |_| |_|
+              |_|                      
+""", style="bold green")
+            else:
+                header = Text("""
 🦖 DINOSCAN v1 - Security Scanner 🛡️
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
     _                     _           
@@ -30,9 +55,12 @@ def print_dashboard_header():
 /_/   \_\__,_| .__/|_|  |_|_| |_| |_|
               |_|                      
 """, style="bold green")
-        console.print(Panel(header, border_style="green"))
+            console.print(Panel(header, border_style="green"))
+        except Exception:
+            print("DINO SCAN v1 - Security Scanner")
+            print("=" * 50)
     else:
-        print("🦖 DINOSCAN v1 - Security Scanner 🛡️")
+        print("DINO SCAN v1 - Security Scanner")
         print("=" * 50)
 
 def create_results_table(results):
