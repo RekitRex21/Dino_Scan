@@ -48,6 +48,34 @@ SUSPICIOUS_PATTERNS = {
         r'[A-Za-z0-9+/]{100,}=',  # Long base64
         r'\\x[0-9a-f]{2,}',        # Hex encoding
     ],
+    # Living off the Land (LotL) - CRITICAL
+    'lotl_attack': [
+        r'subprocess\.run.*curl',
+        r'subprocess\.run.*wget',
+        r'subprocess\.run.*certutil',
+        r'subprocess\.run.*powershell',
+        r'os\.system.*curl',
+        r'os\.system.*wget',
+        r'pty\.spawn.*bash',
+    ],
+    # DNS Tunneling - HIGH
+    'dns_tunneling': [
+        r'\.attacker\.com',
+        r'\.exfil\.net',
+        r'dns\.resolve',
+        r'socket\.gethostbyname',
+    ],
+    # Telegram Exfil - HIGH  
+    'telegram_exfil': [
+        r'api\.telegram\.org/bot',
+        r'https://api\.telegram\.org',
+    ],
+    # Steganography - HIGH
+    'steganography': [
+        r'PIL\.Image\.open.*\.png',
+        r'base64.*image',
+        r'embed.*image',
+    ],
 }
 
 # ============ IOCs (Feb 2026) ============
