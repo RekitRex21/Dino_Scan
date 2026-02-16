@@ -1,0 +1,43 @@
+{
+  "metadata": {
+    "generated": "2026-02-16T09:38:42.915087",
+    "tool": "DinoScan Security Scanner",
+    "source": "github.com/openclaw/skills"
+  },
+  "indicators": {
+    "ip_addresses": [
+      {
+        "address": "91.92.242.30",
+        "type": "C2",
+        "confidence": "HIGH"
+      },
+      {
+        "address": "54.91.154.110",
+        "type": "C2",
+        "confidence": "HIGH"
+      }
+    ],
+    "domains": [
+      {
+        "domain": "webhook.site",
+        "type": "exfiltration",
+        "confidence": "HIGH"
+      },
+      {
+        "domain": "glot.io",
+        "type": "exfiltration",
+        "confidence": "HIGH"
+      }
+    ],
+    "file_patterns": [
+      "eval() usage patterns",
+      "Hardcoded credential patterns (.env)",
+      "C2 communication patterns"
+    ]
+  },
+  "statistics": {
+    "total_ips": 2,
+    "total_domains": 2,
+    "confidence": "HIGH - confirmed in malicious code"
+  }
+}

@@ -1,0 +1,699 @@
+[
+  {
+    "file": "SKILL.md",
+    "path": "/repo/1password/SKILL.md",
+    "hash": "9e9dace009cf3fa8dc8b3fc9af867ba44999289a3fdbd21ac9d9bddf585e29cc",
+    "score": 0,
+    "recommendation": "[SAFE]",
+    "findings": [],
+    "scanned_at": "2026-02-13T04:29:29.114731"
+  },
+  {
+    "file": "cli-examples.md",
+    "path": "/repo/1password/references/cli-examples.md",
+    "hash": "7df8fb39623b7cd222766e33255d47c271f772ca53198f256f1270fd9054d20e",
+    "score": 10,
+    "recommendation": "[DANGER]",
+    "findings": [
+      {
+        "type": "Credential_Theft",
+        "severity": "CRITICAL",
+        "line": 19,
+        "match": ".env",
+        "source": "ioc"
+      }
+    ],
+    "scanned_at": "2026-02-13T04:29:29.132456"
+  },
+  {
+    "file": "get-started.md",
+    "path": "/repo/1password/references/get-started.md",
+    "hash": "e5fc5c4fbfd61fa590a2ba903eb7c22bd8d8c622bd47287ff66c20d00d7156b4",
+    "score": 0,
+    "recommendation": "[SAFE]",
+    "findings": [],
+    "scanned_at": "2026-02-13T04:29:29.143876"
+  },
+  {
+    "file": "SKILL.md",
+    "path": "/repo/apple-notes/SKILL.md",
+    "hash": "c07631bb6ec0dd136eaa86af86830954c296aa66ea7109c00731c098cd8d5b00",
+    "score": 0,
+    "recommendation": "[SAFE]",
+    "findings": [],
+    "scanned_at": "2026-02-13T04:29:29.157818"
+  },
+  {
+    "file": "SKILL.md",
+    "path": "/repo/apple-reminders/SKILL.md",
+    "hash": "bd4253fc257cece884dfd9438cae223f5e987a3fefa45a3a755c57217ee05b50",
+    "score": 0,
+    "recommendation": "[SAFE]",
+    "findings": [],
+    "scanned_at": "2026-02-13T04:29:29.173520"
+  },
+  {
+    "file": "SKILL.md",
+    "path": "/repo/bear-notes/SKILL.md",
+    "hash": "956251b2fca2f0a082c19a380382ce186fb49f0165752eab85f3bc2948671939",
+    "score": 0,
+    "recommendation": "[SAFE]",
+    "findings": [],
+    "scanned_at": "2026-02-13T04:29:29.189341"
+  },
+  {
+    "file": "SKILL.md",
+    "path": "/repo/blogwatcher/SKILL.md",
+    "hash": "33011ee6e0c3202183772ee496d3d16b7388568c2d693395a072b081b9b9ff0e",
+    "score": 0,
+    "recommendation": "[SAFE]",
+    "findings": [],
+    "scanned_at": "2026-02-13T04:29:29.203125"
+  },
+  {
+    "file": "SKILL.md",
+    "path": "/repo/blucli/SKILL.md",
+    "hash": "38b96f404b6bb2c4a12717a60aa0ffd88b848faca81697938466b9de2a646056",
+    "score": 0,
+    "recommendation": "[SAFE]",
+    "findings": [],
+    "scanned_at": "2026-02-13T04:29:29.215944"
+  },
+  {
+    "file": "SKILL.md",
+    "path": "/repo/bluebubbles/SKILL.md",
+    "hash": "41a9218692a5158ffb5a415c6bcffeca7f863ce4db4127f6c0137ba958eb848a",
+    "score": 0,
+    "recommendation": "[SAFE]",
+    "findings": [],
+    "scanned_at": "2026-02-13T04:29:29.232278"
+  },
+  {
+    "file": "SKILL.md",
+    "path": "/repo/camsnap/SKILL.md",
+    "hash": "95039a10f6626adcec7b09ac235c5c36f2c16cb90dbbb2346e8309f4fa57d72d",
+    "score": 0,
+    "recommendation": "[SAFE]",
+    "findings": [],
+    "scanned_at": "2026-02-13T04:29:29.245618"
+  },
+  {
+    "file": "SKILL.md",
+    "path": "/repo/canvas/SKILL.md",
+    "hash": "931e65501872f463e74ea38190d7fbdd029375b1a8a533d7b5ba891707eba918",
+    "score": 0,
+    "recommendation": "[SAFE]",
+    "findings": [],
+    "scanned_at": "2026-02-13T04:29:29.267958"
+  },
+  {
+    "file": "SKILL.md",
+    "path": "/repo/clawhub/SKILL.md",
+    "hash": "2bae787841a3b74b8f8fbe50d14e91c4b037f27006624b95307d45dd20b7dde2",
+    "score": 0,
+    "recommendation": "[SAFE]",
+    "findings": [],
+    "scanned_at": "2026-02-13T04:29:29.284561"
+  },
+  {
+    "file": "SKILL.md",
+    "path": "/repo/coding-agent/SKILL.md",
+    "hash": "1ac51eb3ada826c6237db0cbac9636a559bf01132372586cf5bb097677184d22",
+    "score": 0,
+    "recommendation": "[SAFE]",
+    "findings": [],
+    "scanned_at": "2026-02-13T04:29:29.309242"
+  },
+  {
+    "file": "SKILL.md",
+    "path": "/repo/discord/SKILL.md",
+    "hash": "41620b1a24511fdae3388a7bed1dd4b54deeb6731aca74859c20487d0f564ebd",
+    "score": 0,
+    "recommendation": "[SAFE]",
+    "findings": [],
+    "scanned_at": "2026-02-13T04:29:29.334333"
+  },
+  {
+    "file": "SKILL.md",
+    "path": "/repo/eightctl/SKILL.md",
+    "hash": "a67bcb20983ae1658db7112c7a2e6573f68571ad8987cfb6b96be3fe7dbe451a",
+    "score": 0,
+    "recommendation": "[SAFE]",
+    "findings": [],
+    "scanned_at": "2026-02-13T04:29:29.348626"
+  },
+  {
+    "file": "SKILL.md",
+    "path": "/repo/food-order/SKILL.md",
+    "hash": "2754deb16655ca16aef5ecbcf17ff97d2c98fb9dc399e9523a741d50e3e16a00",
+    "score": 0,
+    "recommendation": "[SAFE]",
+    "findings": [],
+    "scanned_at": "2026-02-13T04:29:29.364217"
+  },
+  {
+    "file": "SKILL.md",
+    "path": "/repo/gemini/SKILL.md",
+    "hash": "29205943f8adeb77ab24d4f473250c8970ee4d77f139166f119b6071c008318b",
+    "score": 0,
+    "recommendation": "[SAFE]",
+    "findings": [],
+    "scanned_at": "2026-02-13T04:29:29.379127"
+  },
+  {
+    "file": "SKILL.md",
+    "path": "/repo/gifgrep/SKILL.md",
+    "hash": "3445f7eeed1bd08f396f08af458055d451b9cac99104e1b208ffe50e71997914",
+    "score": 0,
+    "recommendation": "[SAFE]",
+    "findings": [],
+    "scanned_at": "2026-02-13T04:29:29.393649"
+  },
+  {
+    "file": "SKILL.md",
+    "path": "/repo/github/SKILL.md",
+    "hash": "b1dfa8cd04bc7d1c59efcf6a9540ca5dbf62365b7af8ae427af6fb88001dcb96",
+    "score": 0,
+    "recommendation": "[SAFE]",
+    "findings": [],
+    "scanned_at": "2026-02-13T04:29:29.407879"
+  },
+  {
+    "file": "SKILL.md",
+    "path": "/repo/gog/SKILL.md",
+    "hash": "ceb5ee5bb4f0b9016694ed709180399fc75214b7b91a958e1aae1e1a351cb0b6",
+    "score": 0,
+    "recommendation": "[SAFE]",
+    "findings": [],
+    "scanned_at": "2026-02-13T04:29:29.426643"
+  },
+  {
+    "file": "SKILL.md",
+    "path": "/repo/goplaces/SKILL.md",
+    "hash": "36b7cca469b176b9f141cb32ea3f8100f16c12954ba16a91ab66c4208b927bba",
+    "score": 0,
+    "recommendation": "[SAFE]",
+    "findings": [],
+    "scanned_at": "2026-02-13T04:29:29.442779"
+  },
+  {
+    "file": "SKILL.md",
+    "path": "/repo/healthcheck/SKILL.md",
+    "hash": "adba53ffae3924e411b0e73737ed9f0917b79cd5a7e64f0f9d03600126a07085",
+    "score": 10,
+    "recommendation": "[DANGER]",
+    "findings": [
+      {
+        "type": "Memory_Poison",
+        "severity": "CRITICAL",
+        "line": 242,
+        "match": "MEMORY.md",
+        "source": "ioc"
+      }
+    ],
+    "scanned_at": "2026-02-13T04:29:29.466314"
+  },
+  {
+    "file": "SKILL.md",
+    "path": "/repo/himalaya/SKILL.md",
+    "hash": "afef5fe4e3984f08375f7d48a347960d6fff8845c41aa41a15407f8a3852bf5a",
+    "score": 0,
+    "recommendation": "[SAFE]",
+    "findings": [],
+    "scanned_at": "2026-02-13T04:29:29.484440"
+  },
+  {
+    "file": "configuration.md",
+    "path": "/repo/himalaya/references/configuration.md",
+    "hash": "a1838b3f370abef2c6c45226115158aee095623701a4ffb48ea633bce14ccf0f",
+    "score": 0,
+    "recommendation": "[SAFE]",
+    "findings": [],
+    "scanned_at": "2026-02-13T04:29:29.504358"
+  },
+  {
+    "file": "message-composition.md",
+    "path": "/repo/himalaya/references/message-composition.md",
+    "hash": "84d889972f5f4243d891405b83e67bddc7e835b2c4e434efd77fdc6bca9fe307",
+    "score": 0,
+    "recommendation": "[SAFE]",
+    "findings": [],
+    "scanned_at": "2026-02-13T04:29:29.518337"
+  },
+  {
+    "file": "SKILL.md",
+    "path": "/repo/imsg/SKILL.md",
+    "hash": "aa534c94897e6d6abce2a6720c75a8eee2fc197d75669f1f8a039952cbcb26e5",
+    "score": 0,
+    "recommendation": "[SAFE]",
+    "findings": [],
+    "scanned_at": "2026-02-13T04:29:29.531896"
+  },
+  {
+    "file": "SERVER_README.md",
+    "path": "/repo/local-places/SERVER_README.md",
+    "hash": "21fccf3087b58eb58e6da5368533164b4f40f1cef12bd20c228c769f1d44e681",
+    "score": 0,
+    "recommendation": "[SAFE]",
+    "findings": [],
+    "scanned_at": "2026-02-13T04:29:29.546631"
+  },
+  {
+    "file": "SKILL.md",
+    "path": "/repo/local-places/SKILL.md",
+    "hash": "b2e69841170c7aa83cd6468f15c5ae8ea7e75af668b44966922bc5ae529624be",
+    "score": 0,
+    "recommendation": "[SAFE]",
+    "findings": [],
+    "scanned_at": "2026-02-13T04:29:29.563952"
+  },
+  {
+    "file": "google_places.py",
+    "path": "/repo/local-places/src/local_places/google_places.py",
+    "hash": "358207890bf1244ed74ad26dc7ecde2e17281ab26944e30e5bb5d3a0cdb50ebe",
+    "score": 0,
+    "recommendation": "[SAFE]",
+    "findings": [],
+    "scanned_at": "2026-02-13T04:29:29.603144"
+  },
+  {
+    "file": "main.py",
+    "path": "/repo/local-places/src/local_places/main.py",
+    "hash": "6959470c3fdb6d7342b7b9e6eadf2d08c046ff0450b449b29c54345ca7977d52",
+    "score": 0,
+    "recommendation": "[SAFE]",
+    "findings": [],
+    "scanned_at": "2026-02-13T04:29:29.626184"
+  },
+  {
+    "file": "schemas.py",
+    "path": "/repo/local-places/src/local_places/schemas.py",
+    "hash": "2eec353cb92e27b317c1255534f8535a6f46ced85e857d6887bd89cc1c81a109",
+    "score": 0,
+    "recommendation": "[SAFE]",
+    "findings": [],
+    "scanned_at": "2026-02-13T04:29:29.641180"
+  },
+  {
+    "file": "__init__.py",
+    "path": "/repo/local-places/src/local_places/__init__.py",
+    "hash": "b576d15ec3b4344fd45759081e26534d0407d1f8f45362a8c7136eb2efe0ceb3",
+    "score": 0,
+    "recommendation": "[SAFE]",
+    "findings": [],
+    "scanned_at": "2026-02-13T04:29:29.653764"
+  },
+  {
+    "file": "SKILL.md",
+    "path": "/repo/mcporter/SKILL.md",
+    "hash": "a9a860f7453f33ca3474b5fadff48969271e82733db6479cdfc96d9ce6752214",
+    "score": 0,
+    "recommendation": "[SAFE]",
+    "findings": [],
+    "scanned_at": "2026-02-13T04:29:29.667688"
+  },
+  {
+    "file": "SKILL.md",
+    "path": "/repo/model-usage/SKILL.md",
+    "hash": "b88045ef1c5c6fa7baeeaf48cc15eb2d38fc856f0b0bbfa12bb497372d6e26aa",
+    "score": 0,
+    "recommendation": "[SAFE]",
+    "findings": [],
+    "scanned_at": "2026-02-13T04:29:29.681006"
+  },
+  {
+    "file": "codexbar-cli.md",
+    "path": "/repo/model-usage/references/codexbar-cli.md",
+    "hash": "276cc2d8ff141082fb89c8ec136b1e5cc86d169fc79cc07d0211ef1807e37735",
+    "score": 0,
+    "recommendation": "[SAFE]",
+    "findings": [],
+    "scanned_at": "2026-02-13T04:29:29.698474"
+  },
+  {
+    "file": "model_usage.py",
+    "path": "/repo/model-usage/scripts/model_usage.py",
+    "hash": "502dcda47466a4ab74da59badbe4b12c4782ed031c43d5038f8bd8534373cd35",
+    "score": 0,
+    "recommendation": "[SAFE]",
+    "findings": [],
+    "scanned_at": "2026-02-13T04:29:29.721111"
+  },
+  {
+    "file": "SKILL.md",
+    "path": "/repo/nano-banana-pro/SKILL.md",
+    "hash": "9ab0838e959fee7de750d28eca79bb708f6e927fea71876f3c75614dea60386e",
+    "score": 0,
+    "recommendation": "[SAFE]",
+    "findings": [],
+    "scanned_at": "2026-02-13T04:29:29.735217"
+  },
+  {
+    "file": "generate_image.py",
+    "path": "/repo/nano-banana-pro/scripts/generate_image.py",
+    "hash": "12f92408c98d4f8626c29707a12dcc866a87de4a3098cc4badbb15e64e8a3161",
+    "score": 10,
+    "recommendation": "[DANGER]",
+    "findings": [
+      {
+        "type": "Credential_Theft",
+        "severity": "CRITICAL",
+        "line": 29,
+        "match": ".env",
+        "source": "ioc"
+      }
+    ],
+    "scanned_at": "2026-02-13T04:29:29.754390"
+  },
+  {
+    "file": "SKILL.md",
+    "path": "/repo/nano-pdf/SKILL.md",
+    "hash": "28c360b5b915dba7ea377c6a88b103f547fc0ecf38bf66ca6e6b42cce0b76c1f",
+    "score": 0,
+    "recommendation": "[SAFE]",
+    "findings": [],
+    "scanned_at": "2026-02-13T04:29:29.766597"
+  },
+  {
+    "file": "SKILL.md",
+    "path": "/repo/notion/SKILL.md",
+    "hash": "b1ec55de3a74e1c0322c0731083f5c0b82356dc35e97cd7866ad17553ab43cff",
+    "score": 0,
+    "recommendation": "[SAFE]",
+    "findings": [],
+    "scanned_at": "2026-02-13T04:29:29.782966"
+  },
+  {
+    "file": "SKILL.md",
+    "path": "/repo/obsidian/SKILL.md",
+    "hash": "b184f7079cf2338ce47a7ac0cc346904fcd1d80a030ae12000c7bac8fa3bb410",
+    "score": 0,
+    "recommendation": "[SAFE]",
+    "findings": [],
+    "scanned_at": "2026-02-13T04:29:29.795829"
+  },
+  {
+    "file": "SKILL.md",
+    "path": "/repo/openai-image-gen/SKILL.md",
+    "hash": "af85649d885792e8763649914b827451e7e4b3a10f4fa8d038c2fb23cd046c31",
+    "score": 0,
+    "recommendation": "[SAFE]",
+    "findings": [],
+    "scanned_at": "2026-02-13T04:29:29.809313"
+  },
+  {
+    "file": "gen.py",
+    "path": "/repo/openai-image-gen/scripts/gen.py",
+    "hash": "c6b88f16eeb1db17bc2927e4d495d1633a4f7b6362a65541138e832e74a85728",
+    "score": 10,
+    "recommendation": "[DANGER]",
+    "findings": [
+      {
+        "type": "Credential_Theft",
+        "severity": "CRITICAL",
+        "line": 176,
+        "match": ".env",
+        "source": "ioc"
+      }
+    ],
+    "scanned_at": "2026-02-13T04:29:29.830886"
+  },
+  {
+    "file": "SKILL.md",
+    "path": "/repo/openai-whisper/SKILL.md",
+    "hash": "6211652a4ffe7f58cb2a27017419a80d5b8977b7f6ec6958c9c1e2a75dbc4b00",
+    "score": 0,
+    "recommendation": "[SAFE]",
+    "findings": [],
+    "scanned_at": "2026-02-13T04:29:29.847743"
+  },
+  {
+    "file": "SKILL.md",
+    "path": "/repo/openai-whisper-api/SKILL.md",
+    "hash": "c0ad50049a94a4d75ac182f473f73723ec3a22fc7a53a083c9ef30d5f7eb5123",
+    "score": 0,
+    "recommendation": "[SAFE]",
+    "findings": [],
+    "scanned_at": "2026-02-13T04:29:29.862149"
+  },
+  {
+    "file": "transcribe.sh",
+    "path": "/repo/openai-whisper-api/scripts/transcribe.sh",
+    "hash": "06d255cdd1a44ea3098ca1d9400529c641da76b4e9389007904f190e681d5688",
+    "score": 0,
+    "recommendation": "[SAFE]",
+    "findings": [],
+    "scanned_at": "2026-02-13T04:29:29.879571"
+  },
+  {
+    "file": "SKILL.md",
+    "path": "/repo/openhue/SKILL.md",
+    "hash": "87e7de91a44e988e0070fa0eb02fa72254ea3471f48595366a5a9fa7f9412746",
+    "score": 0,
+    "recommendation": "[SAFE]",
+    "findings": [],
+    "scanned_at": "2026-02-13T04:29:29.892754"
+  },
+  {
+    "file": "SKILL.md",
+    "path": "/repo/oracle/SKILL.md",
+    "hash": "903a053178a3d2e7786f2036c8e151c40052184b6355614bc0aefdcc965d245e",
+    "score": 10,
+    "recommendation": "[DANGER]",
+    "findings": [
+      {
+        "type": "Credential_Theft",
+        "severity": "CRITICAL",
+        "line": 115,
+        "match": ".env",
+        "source": "ioc"
+      }
+    ],
+    "scanned_at": "2026-02-13T04:29:29.908947"
+  },
+  {
+    "file": "SKILL.md",
+    "path": "/repo/ordercli/SKILL.md",
+    "hash": "14aef89ed6dad8e3f5712f172d7580623d5bf64f70914788a8fad96e9ec45f66",
+    "score": 0,
+    "recommendation": "[SAFE]",
+    "findings": [],
+    "scanned_at": "2026-02-13T04:29:29.922877"
+  },
+  {
+    "file": "SKILL.md",
+    "path": "/repo/peekaboo/SKILL.md",
+    "hash": "bb06f126ec6c0d2dd6b1a8eb0affe60d6389b95af2ffc91fd9cc937d5c9b9c44",
+    "score": 0,
+    "recommendation": "[SAFE]",
+    "findings": [],
+    "scanned_at": "2026-02-13T04:29:29.938204"
+  },
+  {
+    "file": "SKILL.md",
+    "path": "/repo/sag/SKILL.md",
+    "hash": "d86b98ff6586e4928bc5aa7ecfaddf25551880b20382e0ce13bbdabf324e82fa",
+    "score": 0,
+    "recommendation": "[SAFE]",
+    "findings": [],
+    "scanned_at": "2026-02-13T04:29:29.951254"
+  },
+  {
+    "file": "SKILL.md",
+    "path": "/repo/session-logs/SKILL.md",
+    "hash": "7c6a007031f8c13621ee2ad2188798e7745afac24932fb7be0b57ad1a36464cc",
+    "score": 0,
+    "recommendation": "[SAFE]",
+    "findings": [],
+    "scanned_at": "2026-02-13T04:29:29.964490"
+  },
+  {
+    "file": "SKILL.md",
+    "path": "/repo/sherpa-onnx-tts/SKILL.md",
+    "hash": "bb61a0053efd3932747510ad58384d2b5b70281c5ee9adefe7f5017f73243020",
+    "score": 0,
+    "recommendation": "[SAFE]",
+    "findings": [],
+    "scanned_at": "2026-02-13T04:29:29.978705"
+  },
+  {
+    "file": "license.txt",
+    "path": "/repo/skill-creator/license.txt",
+    "hash": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+    "score": 0,
+    "recommendation": "[SAFE]",
+    "findings": [],
+    "scanned_at": "2026-02-13T04:29:30.000796"
+  },
+  {
+    "file": "SKILL.md",
+    "path": "/repo/skill-creator/SKILL.md",
+    "hash": "75721bda3535b4e87d528f02de10c7b9f7f9a63ebcdc9de5b0cd588d3323096f",
+    "score": 0,
+    "recommendation": "[SAFE]",
+    "findings": [],
+    "scanned_at": "2026-02-13T04:29:30.024208"
+  },
+  {
+    "file": "init_skill.py",
+    "path": "/repo/skill-creator/scripts/init_skill.py",
+    "hash": "bcd6b802c400a9e89319844c6c3d965855c8b0555e982eb72cd4accb7ee67e3e",
+    "score": 0,
+    "recommendation": "[SAFE]",
+    "findings": [],
+    "scanned_at": "2026-02-13T04:29:30.048694"
+  },
+  {
+    "file": "package_skill.py",
+    "path": "/repo/skill-creator/scripts/package_skill.py",
+    "hash": "b4dbaba3700848f149419e500dd2ccecf7d98b75c84d648f1a699fe4fb2f4628",
+    "score": 0,
+    "recommendation": "[SAFE]",
+    "findings": [],
+    "scanned_at": "2026-02-13T04:29:30.060848"
+  },
+  {
+    "file": "quick_validate.py",
+    "path": "/repo/skill-creator/scripts/quick_validate.py",
+    "hash": "6cc9dc3199c935916cf6f73fcbbbb0e3bb1b58c8f5109fefa499978908164f51",
+    "score": 0,
+    "recommendation": "[SAFE]",
+    "findings": [],
+    "scanned_at": "2026-02-13T04:29:30.072472"
+  },
+  {
+    "file": "SKILL.md",
+    "path": "/repo/slack/SKILL.md",
+    "hash": "e3bf25727b1f952a4a0c0fa22f9fca8171e68e2b5419b5fcdf86610504118294",
+    "score": 0,
+    "recommendation": "[SAFE]",
+    "findings": [],
+    "scanned_at": "2026-02-13T04:29:30.087075"
+  },
+  {
+    "file": "SKILL.md",
+    "path": "/repo/songsee/SKILL.md",
+    "hash": "ed648a76a89a05912e161a9e1e6a327d78211b111db92723fe9530f503830777",
+    "score": 0,
+    "recommendation": "[SAFE]",
+    "findings": [],
+    "scanned_at": "2026-02-13T04:29:30.099489"
+  },
+  {
+    "file": "SKILL.md",
+    "path": "/repo/sonoscli/SKILL.md",
+    "hash": "ce5c4e2a3316aedbda94c4552728a0aa51ef28281e403e817cb6792524cd589c",
+    "score": 0,
+    "recommendation": "[SAFE]",
+    "findings": [],
+    "scanned_at": "2026-02-13T04:29:30.111816"
+  },
+  {
+    "file": "SKILL.md",
+    "path": "/repo/spotify-player/SKILL.md",
+    "hash": "35f3d420538ce7e79ce5226a849f3089045a62537058875da0a7c302f603c8b4",
+    "score": 0,
+    "recommendation": "[SAFE]",
+    "findings": [],
+    "scanned_at": "2026-02-13T04:29:30.126583"
+  },
+  {
+    "file": "SKILL.md",
+    "path": "/repo/summarize/SKILL.md",
+    "hash": "3ec4a66d4f2756c15cf653a9f7b67d05631ac712078b5768945511db8ad7c7a6",
+    "score": 0,
+    "recommendation": "[SAFE]",
+    "findings": [],
+    "scanned_at": "2026-02-13T04:29:30.139749"
+  },
+  {
+    "file": "SKILL.md",
+    "path": "/repo/things-mac/SKILL.md",
+    "hash": "5a04111134fd1d49dd350e5ba4fcb50e3d7911ef68d79eea2c797add357cf260",
+    "score": 0,
+    "recommendation": "[SAFE]",
+    "findings": [],
+    "scanned_at": "2026-02-13T04:29:30.153183"
+  },
+  {
+    "file": "SKILL.md",
+    "path": "/repo/tmux/SKILL.md",
+    "hash": "65dff7a097727712ea23bee9a00871459f0015af19436c7d4264cb784736a814",
+    "score": 0,
+    "recommendation": "[SAFE]",
+    "findings": [],
+    "scanned_at": "2026-02-13T04:29:30.170928"
+  },
+  {
+    "file": "find-sessions.sh",
+    "path": "/repo/tmux/scripts/find-sessions.sh",
+    "hash": "0c3d974930b78a5207b7c9bfae1dd5ee9a18ee6bcb4f04f7b0af97952a726e82",
+    "score": 0,
+    "recommendation": "[SAFE]",
+    "findings": [],
+    "scanned_at": "2026-02-13T04:29:30.187588"
+  },
+  {
+    "file": "wait-for-text.sh",
+    "path": "/repo/tmux/scripts/wait-for-text.sh",
+    "hash": "96bc42702f7353c32233c223d61dd11f2f99033267aeefac838aea8983a67735",
+    "score": 0,
+    "recommendation": "[SAFE]",
+    "findings": [],
+    "scanned_at": "2026-02-13T04:29:30.199159"
+  },
+  {
+    "file": "SKILL.md",
+    "path": "/repo/trello/SKILL.md",
+    "hash": "61c8c5d474c579fe1a2d465086134d26c5657179088bee39f4f06b39daff4c50",
+    "score": 0,
+    "recommendation": "[SAFE]",
+    "findings": [],
+    "scanned_at": "2026-02-13T04:29:30.213445"
+  },
+  {
+    "file": "SKILL.md",
+    "path": "/repo/video-frames/SKILL.md",
+    "hash": "f5cb2b9e7755b990bd4c8b75799a0d915d9c20a02ae592877586ccbdbffdc364",
+    "score": 0,
+    "recommendation": "[SAFE]",
+    "findings": [],
+    "scanned_at": "2026-02-13T04:29:30.226082"
+  },
+  {
+    "file": "frame.sh",
+    "path": "/repo/video-frames/scripts/frame.sh",
+    "hash": "b339455e9e618c836ccf2e3732e4fec9897f079730d8814eadb716e2459df453",
+    "score": 0,
+    "recommendation": "[SAFE]",
+    "findings": [],
+    "scanned_at": "2026-02-13T04:29:30.241389"
+  },
+  {
+    "file": "SKILL.md",
+    "path": "/repo/voice-call/SKILL.md",
+    "hash": "d3e2c6d3d4ab409b186684d250d77f47117a466d33e9d83e23f60831e768b3f4",
+    "score": 0,
+    "recommendation": "[SAFE]",
+    "findings": [],
+    "scanned_at": "2026-02-13T04:29:30.252908"
+  },
+  {
+    "file": "SKILL.md",
+    "path": "/repo/wacli/SKILL.md",
+    "hash": "e96ce8a145db72ceb49012d20570a0cff921173f9518676d7fe1472804ffeb9c",
+    "score": 0,
+    "recommendation": "[SAFE]",
+    "findings": [],
+    "scanned_at": "2026-02-13T04:29:30.265775"
+  },
+  {
+    "file": "SKILL.md",
+    "path": "/repo/weather/SKILL.md",
+    "hash": "6953295d3da583332ba64e7a128d9250bd46668b8ddb5062656105ab5d7d2199",
+    "score": 0,
+    "recommendation": "[SAFE]",
+    "findings": [],
+    "scanned_at": "2026-02-13T04:29:30.278434"
+  }
+]

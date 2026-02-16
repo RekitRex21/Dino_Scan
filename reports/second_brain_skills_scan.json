@@ -1,0 +1,52 @@
+{
+  "repo_url": null,
+  "scanned_at": "2026-02-16T09:31:22.252952",
+  "total_files": 5,
+  "results": [
+    {
+      "file": "ascii_architect.py",
+      "path": "C:\\Users\\rexdu\\.openclaw\\workspace\\second_brain\\skills\\ascii_architect\\ascii_architect.py",
+      "hash": "6d76a45ef57d1a6ab62e7b8511e05559bd5e97f2619f8a9c59d86690c9d08a0a",
+      "score": 0,
+      "recommendation": "[SAFE]",
+      "findings": [],
+      "scanned_at": "2026-02-16T09:31:22.245288"
+    },
+    {
+      "file": "SKILL.md",
+      "path": "C:\\Users\\rexdu\\.openclaw\\workspace\\second_brain\\skills\\ascii_architect\\SKILL.md",
+      "hash": "c3471b6f889ce9de484f33279a6e25755198a66a0d0ce8000e7c292d2545f9a9",
+      "score": 0,
+      "recommendation": "[SAFE]",
+      "findings": [],
+      "scanned_at": "2026-02-16T09:31:22.247435"
+    },
+    {
+      "file": "SKILL.md",
+      "path": "C:\\Users\\rexdu\\.openclaw\\workspace\\second_brain\\skills\\last_30_days_research\\SKILL.md",
+      "hash": "0eda8a6c999e119f652dc464aa10e10797330af751720af621bf222cef02baff",
+      "score": 0,
+      "recommendation": "[SAFE]",
+      "findings": [],
+      "scanned_at": "2026-02-16T09:31:22.249451"
+    },
+    {
+      "file": "SKILL.md",
+      "path": "C:\\Users\\rexdu\\.openclaw\\workspace\\second_brain\\skills\\perplexity_research\\SKILL.md",
+      "hash": "54136aff19f37a95fb065f133aa111bbf8c936d3efa7245581f05fd9f2666e3c",
+      "score": 0,
+      "recommendation": "[SAFE]",
+      "findings": [],
+      "scanned_at": "2026-02-16T09:31:22.251665"
+    },
+    {
+      "file": "SKILL.md",
+      "path": "C:\\Users\\rexdu\\.openclaw\\workspace\\second_brain\\skills\\quick_research\\SKILL.md",
+      "hash": "5c0f4c5a0bf056a3a09a508d0c480f65cfa243c88b2201e277ab0259a574e4bd",
+      "score": 0,
+      "recommendation": "[SAFE]",
+      "findings": [],
+      "scanned_at": "2026-02-16T09:31:22.252929"
+    }
+  ]
+}
