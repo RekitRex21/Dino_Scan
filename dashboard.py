@@ -35,33 +35,53 @@ def print_dashboard_header():
             # Use ASCII-safe header for Windows
             if sys.platform == "win32":
                 header = Text("""
-DINO SCAN v1 - Security Scanner
-=================================
-    _                     _           
-   / \  _   _ _ __  _ __ (_)_ __ ___ 
-  / _ \| | | | '_ \| '__| | '_ ` _ \
- / ___ \ |_| | |_) | |  | | | | | | |
-/_/   \_\__,_| .__/|_|  |_|_| |_| |_|
-              |_|                      
-""", style="bold green")
++=====================================================================+
+|      D I N O S C A N  v1  -  Security Scanner                     |
++=====================================================================+
+|              (Rex the T-Rex - Security Enforcer)                   |
++-------------------------------------------------------------------+
+|          _______                    _______                        |
+|         /       \                  /       \                      |
+|        |  [O]_[O]|                | [O]_[O] |     SCANNING...    |
+|        |    __    |      __       |    __    |                    |
+|        |   /  \   |     /  \      |   /  \   |                    |
+|        |  |    |  |    |  |       |  |    |  |                    |
+|         \__|____|__/     |__|       \__|____|__/                  |
+|           /    |              \        /    |                       |
+|          (_____)              (______) (____)                       |
+|                                                                      |
++=====================================================================+
+|  [====SCANNING====]        [====PROTECTED====]                    |
++=====================================================================+
+""", style="bold cyan")
             else:
                 header = Text("""
-🦖 DINOSCAN v1 - Security Scanner 🛡️
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-    _                     _           
-   / \  _   _ _ __  _ __ (_)_ __ ___ 
-  / _ \| | | | '_ \| '__| | '_ ` _ \
- / ___ \ |_| | |_) | |  | | | | | | |
-/_/   \_\__,_| .__/|_|  |_|_| |_| |_|
-              |_|                      
-""", style="bold green")
-            console.print(Panel(header, border_style="green"))
++=====================================================================+
+|      D I N O S C A N  v1  -  Security Scanner                     |
++=====================================================================+
+|              (Rex the T-Rex - Security Enforcer)                   |
++-------------------------------------------------------------------+
+|          _______                    _______                        |
+|         /       \                  /       \                      |
+|        |  [O]_[O]|                | [O]_[O] |     SCANNING...    |
+|        |    __    |      __       |    __    |                    |
+|        |   /  \   |     /  \      |   /  \   |                    |
+|        |  |    |  |    |  |       |  |    |  |                    |
+|         \__|____|__/     |__|       \__|____|__/                  |
+|           /    |              \        /    |                       |
+|          (_____)              (______) (____)                       |
+|                                                                      |
++=====================================================================+
+|  [====SCANNING====]        [====PROTECTED====]                    |
++=====================================================================+
+""", style="bold cyan")
+            console.print(Panel(header, border_style="cyan", title="SHIELD + DINO v1", subtitle="Security Scanner"))
         except Exception:
-            print("DINO SCAN v1 - Security Scanner")
-            print("=" * 50)
+            print("SHIELD + DINO v1 - Security Scanner")
+            print("=" * 60)
     else:
-        print("DINO SCAN v1 - Security Scanner")
-        print("=" * 50)
+        print("SHIELD + DINO v1 - Security Scanner")
+        print("=" * 60)
 
 def create_results_table(results):
     """Create formatted results table"""
@@ -118,15 +138,15 @@ def print_summary(stats):
     
     summary = f"""
 [bold]Total Files Scanned:[/bold] {total}
-[bold red]🔴 CRITICAL:[/bold red] {danger}
-[bold orange1]🟠 HIGH:[/bold orange1] {high}
-[bold yellow]🟡 MEDIUM:[/bold yellow] {medium}
-[bold green]🟢 SAFE:[/bold green] {safe}
+[bold red]CRITICAL:[/bold red] {danger}
+[bold orange1]HIGH:[/bold orange1] {high}
+[bold yellow]MEDIUM:[/bold yellow] {medium}
+[bold green]SAFE:[/bold green] {safe}
 
 [bold]Risk Score:[/bold] {risk_score}/10
     """
-    
-    console.print(Panel(summary, title="📈 Summary", border_style="cyan"))
+
+    console.print(Panel(summary, title="Summary", border_style="cyan"))
 
 def print_progress_bar():
     """Return a progress bar context manager"""
@@ -148,7 +168,9 @@ def print_finding(finding, style="yellow"):
 
 def dashboard_print(message, style=None):
     """Print message to dashboard"""
+    global console
     if RICH_AVAILABLE:
+        console = get_console()
         if style:
             console.print(f"[{style}]{message}[/{style}]")
         else:

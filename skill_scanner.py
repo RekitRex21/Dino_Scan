@@ -1,7 +1,10 @@
 #!/usr/bin/env python3
 """
-DinoScan v1 - Security Scanner for OpenClaw Skills
+DinoScan v2 - Security Scanner for OpenClaw Skills
 Part of Dino Dynasty OS
+================================================
+Family-based pattern detection with scoring and context awareness.
+Supports IOC feed integration and false positive filtering.
 """
 
 import os
@@ -13,91 +16,224 @@ from datetime import datetime
 from urllib.request import urlopen, Request
 from urllib.error import URLError, HTTPError
 
-# ============ MULTI-PATTERN DETECTION ============
-SUSPICIOUS_PATTERNS = {
-    # Prompt injection - CRITICAL
-    'prompt_injection': [
-        r'(?i)(ignore.*previous|forget.*instructions|disregard.*all)',
-        r'(?i)(you.*are.*now.*instead|act.*as.*if.*you.*were)',
-        r'(?i)(developer.*mode|jailbreak|bypass.*restriction)',
-    ],
-    # Dangerous operations - CRITICAL
-    'dangerous_ops': [
-        r'(?i)(rm\s+-rf|rmdir\s+/|del\s+/|format\s+.*disk)',
-        r'(?i)(wipe.*disk|shred.*file)',
-        r'(?i)(shutdown|reboot|kill\s+-\d)',
-    ],
-    # Code execution - HIGH
-    'code_execution': [
-        r'(?i)(eval\(|exec\(|compile\(|__import__\()',
-        r'(?i)(pickle\.load|marshal\.load|yaml\.load)',
-    ],
-    # Data exfiltration - HIGH
-    'data_exfil': [
-        r'(?i)(requests\.post\([^"]*(?!api\.(openai|anthropic|google))[^"]*https?://)',
-        r'(?i)(urllib\.request\.urlopen)',
-        r'(?i)(socket\.(connect|send)\()',
-    ],
-    # Shell injection - MEDIUM
-    'shell_dynamic': [
-        r'(?i)(os\.system\()',
-        r'(?i)(popen\()',
-    ],
-    # Obfuscation - MEDIUM
-    'obfuscation': [
-        r'[A-Za-z0-9+/]{100,}=',  # Long base64
-        r'\\x[0-9a-f]{2,}',        # Hex encoding
-    ],
-    # Living off the Land (LotL) - CRITICAL
-    'lotl_attack': [
-        r'subprocess\.run.*curl',
-        r'subprocess\.run.*wget',
-        r'subprocess\.run.*certutil',
-        r'subprocess\.run.*powershell',
-        r'os\.system.*curl',
-        r'os\.system.*wget',
-        r'pty\.spawn.*bash',
-    ],
-    # DNS Tunneling - HIGH
-    'dns_tunneling': [
-        r'\.attacker\.com',
-        r'\.exfil\.net',
-        r'dns\.resolve',
-        r'socket\.gethostbyname',
-    ],
-    # Telegram Exfil - HIGH  
-    'telegram_exfil': [
-        r'api\.telegram\.org/bot',
-        r'https://api\.telegram\.org',
-    ],
-    # Steganography - HIGH
-    'steganography': [
-        r'PIL\.Image\.open.*\.png',
-        r'base64.*image',
-        r'embed.*image',
-    ],
+# ============ FAMILY-BASED PATTERN DETECTION ============
+# Structure: { family_name: { severity, patterns, score_bonus, context_ignore } }
+PATTERN_FAMILIES = {
+    # ============ CRITICAL FAMILIES ============
+    "ClawHavoc_Stealer": {
+        "severity": "CRITICAL",
+        "score_bonus": 5,
+        "patterns": [
+            r"91\.92\.242\.30",           # Primary AMOS C2
+            r"54\.91\.154\.110",          # Secondary C2
+            r"http[s]?://91\.92\.242\.30",
+            r"http[s]?://54\.91\.154\.110:\d+",
+            r"openclaw-agent\.exe",       # Windows dropper
+            r"x5ki60w1ih838sp7",          # macOS payload path
+            r"Atomic\s*Stealer|AMOS",
+        ],
+        "context_ignore": [],
+    },
+    "Prompt_Poisoner": {
+        "severity": "HIGH",
+        "score_bonus": 3,
+        "patterns": [
+            r"(?i)ignore\s+(previous|all\s+previous|prior)",
+            r"(?i)forget\s+(all\s+)?(previous|instructions)",
+            r"(?i)new\s+instructions",
+            r"(?i)act\s+as|you\s+are\s+now",
+            r"(?i)developer\s+mode|jailbreak",
+            r"(?i)override\s+(system|your)",
+            r"(?i)DAN\s+mode|permanent\s+prompt",
+            r"SOUL\.md|MEMORY\.md|AGENTS\.md",  # OpenClaw memory files
+            r"(?i)always\s+send.*to.*http",
+            r"(?i)install.*dependency.*setup\.sh",
+        ],
+        "context_ignore": ["tokenizer", "model training", "fine-tuning"],
+    },
+    "Cred_Harvester": {
+        "severity": "CRITICAL",
+        "score_bonus": 4,
+        "patterns": [
+            r"(?i)(api_key|secret|token|password|private_key)\s*=\s*['\"][a-zA-Z0-9_\-]{20,}",
+            r"(?i)(binance|coinbase|bybit|solana|wallet).*=\s*['\"][a-zA-Z0-9_\-]{20,}",
+            r"\.env|\.secrets|keyring",
+            r"browser.*cookies|chrome.*Login\s+Data",
+            r"sqlite.*cookies",
+            r"(?i)Authorization.*:\s*[A-Za-z0-9\-_]{20,}",
+        ],
+        "context_ignore": [],
+    },
+    "RCE_Injector": {
+        "severity": "CRITICAL",
+        "score_bonus": 4,
+        "patterns": [
+            r"eval\s*\(|exec\s*\(|compile\s*\(",
+            r"pickle\.load|marshal\.load|yaml\.load",
+            r"child_process\.exec|child_process\.spawn",
+            r"os\.system\(|os\.popen\(",
+            r"__import__\(|import\s*\(\s*['\"]os",
+            r"subprocess.*shell\s*=\s*True",
+        ],
+        "context_ignore": [],
+    },
+    # ============ HIGH SEVERITY FAMILIES ============
+    "Social_Eng_Loader": {
+        "severity": "HIGH",
+        "score_bonus": 3,
+        "patterns": [
+            r"base64\s+-d\s*\|\s*bash",
+            r"base64\s+-d\s*\|\s*sh",
+            r"curl\s+.*?\s*\|\s*(bash|sh|python)",
+            r"wget\s+.*?-O\s*-",
+            r"paste\s+this.*terminal",
+            r"run\s+this\s+command",
+            r"fix\s+env|helper\s+agent",
+            r"click\s+to\s+fix|install\s+prerequisite",
+        ],
+        "context_ignore": ["testing", "test_"],
+    },
+    "Destructive_Shell": {
+        "severity": "HIGH",
+        "score_bonus": 3,
+        "patterns": [
+            r"rm\s+-rf",
+            r"rmdir\s+/",
+            r"del\s+/[sq]",
+            r"format\s+.*disk",
+            r"wipe\s+disk|shred\s+file",
+            r"shutdown|reboot|halt|poweroff",
+            r"kill\s+-\d+",
+        ],
+        "context_ignore": [],
+    },
+    "Exfil_Domains": {
+        "severity": "HIGH",
+        "score_bonus": 3,
+        "patterns": [
+            r"webhook\.site|glot\.io",
+            r"ngrok\.io|pipedream\.net",
+            r"clawdbot\.getintwopc\.site",
+            r"clawhub\.openclaw\.ai",
+            r"molt\.bot",
+            r"attacker\.com",
+            r"darkgptprivate\.com",
+            r"socifiapp\.com",
+            r"pastebin\.com.*raw",
+            r"transfer\.sh|file\.io",
+        ],
+        "context_ignore": [],
+    },
+    "Bare_IP_Fetch": {
+        "severity": "HIGH",
+        "score_bonus": 2,
+        "patterns": [
+            r"http[s]?://\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}(/|:)",
+        ],
+        "context_ignore": [r"127\.0\.0\.1", "localhost", r"0\.0\.0\.0"],
+    },
+    "Suspicious_Storage": {
+        "severity": "HIGH",
+        "score_bonus": 2,
+        "patterns": [
+            r"localStorage|sessionStorage",
+            r"IndexedDB",
+            r"chrome\.storage",
+            r"electron\.store",
+            r"electron\.ipcRenderer",
+        ],
+        "context_ignore": [],
+    },
+    # ============ MEDIUM SEVERITY FAMILIES ============
+    "Obfuscation": {
+        "severity": "MEDIUM",
+        "score_bonus": 1,
+        "patterns": [
+            r"[A-Za-z0-9+/]{100,}={1,2}",  # Long base64
+            r"\\x[0-9a-f]{2,}",              # Hex encoding
+            r"eval\s*\(\s*atob\s*\(",
+            r"String\.fromCharCode",
+            r"rot13|rot47",
+        ],
+        "context_ignore": [],
+    },
+    "DNS_Tunneling": {
+        "severity": "MEDIUM",
+        "score_bonus": 2,
+        "patterns": [
+            r"\.attacker\.com",
+            r"\.exfil\.net",
+            r"dns\.resolve",
+            r"socket\.gethostbyname",
+        ],
+        "context_ignore": [],
+    },
+    "Telegram_Exfil": {
+        "severity": "MEDIUM",
+        "score_bonus": 2,
+        "patterns": [
+            r"api\.telegram\.org/bot",
+            r"https://api\.telegram\.org",
+        ],
+        "context_ignore": [],
+    },
+    "LotL_Attack": {
+        "severity": "HIGH",
+        "score_bonus": 2,
+        "patterns": [
+            r"subprocess\.run.*curl",
+            r"subprocess\.run.*wget",
+            r"subprocess\.run.*certutil",
+            r"subprocess\.run.*powershell",
+            r"os\.system.*curl",
+            r"os\.system.*wget",
+            r"pty\.spawn.*bash",
+        ],
+        "context_ignore": [],
+    },
+    "Steganography": {
+        "severity": "MEDIUM",
+        "score_bonus": 1,
+        "patterns": [
+            r"PIL\.Image\.open.*\.png",
+            r"base64.*image",
+            r"embed.*image",
+        ],
+        "context_ignore": [],
+    },
 }
 
-# ============ IOCs (Feb 2026) ============
-IOCS = {
-    "ClawHavoc_C2": r"91\.92\.242\.30",
-    "AuthTool_C2": r"54\.91\.154\.110",
-    "Exfil_Domain": r"glot\.io|webhook\.site",
-    "Credential_Theft": r"\.env|creds\.json",
-    "Memory_Poison": r"MEMORY\.md|SOUL\.md",
-    "MacOS_Payload": r"base64\s+-D\s+\|\s+bash",
-    "Shell_Injection": r"os\.system\(.*curl.*sh\)",
+# Keep old patterns for backwards compatibility
+SUSPICIOUS_PATTERNS = PATTERN_FAMILIES  # Use family-based patterns
+DEFAULT_IOCS = {
+    "ips": [
+        "91.92.242.30",
+        "54.91.154.110",
+    ],
+    "domains": [
+        "webhook.site",
+        "glot.io",
+        "ngrok.io",
+        "pastebin.com",
+    ],
 }
 
 # ============ FALSE POSITIVE FILTER ============
 SAFE_PATTERNS = [
-    r'api\.openai\.com',
-    r'api\.anthropic\.com',
-    r'api\.google\.com',
-    r'subprocess\.run',
-    r'subprocess\.check_output',
-    r'Authorization.*Bearer',
-    r':root\b',
+    r"api\.openai\.com",
+    r"api\.anthropic\.com", 
+    r"api\.google\.com",
+    r"api\.minimax\.io",
+    r"subprocess\.run\s*\(\s*\[\s*['\"]echo",
+    r"subprocess\.run\s*\(\s*\[\s*['\"]ls",
+    r"subprocess\.check_output",
+    r"Authorization.*Bearer",
+    r"process\.env\.NODE_ENV",
+    r"//.*#\s*ignore",
+]
+
+# Additional safe patterns (comments, tests)
+ADDITIONAL_SAFE = [
     r'SKILL\.md',
     r'healthcheck',
     r'```python',
@@ -187,21 +323,59 @@ def scan_content(content: str, filename: str = "unknown") -> tuple:
                 })
                 total_score += RISK_WEIGHTS.get(category, 1)
     
-    # Check IOCs
-    for ioc_name, pattern in IOCS.items():
-        for match in re.finditer(pattern, content, re.IGNORECASE):
-            if is_safe(content, match.start(), match.end()):
-                continue
-            
-            line_num = content[:match.start()].count('\n') + 1
-            findings.append({
-                'type': ioc_name,
-                'severity': 'CRITICAL',
-                'line': line_num,
-                'match': match.group()[:60],
-                'source': 'ioc'
-            })
-            total_score += RISK_WEIGHTS.get(ioc_name, 10)
+    # Note: IOC scanning now handled by family-based patterns (ClawHavoc_Stealer, Exfil_Domains, etc.)
+    # Legacy IOC scanner disabled - families provide better coverage with scoring
+    
+    # ============ FAMILY-BASED SCANNING (v2) - PRIMARY ============
+    family_hits = {}  # Track hits per family
+    
+    for family_name, family_config in PATTERN_FAMILIES.items():
+        patterns = family_config.get('patterns', [])
+        severity = family_config.get('severity', 'MEDIUM')
+        score_bonus = family_config.get('score_bonus', 1)
+        context_ignore = family_config.get('context_ignore', [])
+        
+        for pattern in patterns:
+            try:
+                for match in re.finditer(pattern, content, re.IGNORECASE | re.MULTILINE):
+                    # Get context around match
+                    context_start = max(0, match.start() - 100)
+                    context_end = min(len(content), match.end() + 100)
+                    context = content[context_start:context_end]
+                    
+                    # Check if matches safe context (false positive filter)
+                    if context_ignore:
+                        for ignore_term in context_ignore:
+                            if ignore_term.lower() in context.lower():
+                                break
+                    else:
+                        # Check safe patterns
+                        if is_safe(content, match.start(), match.end()):
+                            continue
+                    
+                    line_num = content[:match.start()].count('\n') + 1
+                    
+                    findings.append({
+                        'type': family_name,
+                        'severity': severity,
+                        'line': line_num,
+                        'match': match.group()[:60],
+                        'source': 'family',
+                        'family': family_name
+                    })
+                    total_score += score_bonus
+                    
+                    # Track family hits for aggregation
+                    if family_name not in family_hits:
+                        family_hits[family_name] = 0
+                    family_hits[family_name] += 1
+            except re.error:
+                pass  # Skip invalid regex
+    
+    # Family aggregation bonus - if 2+ hits in same family, boost score
+    for family, hit_count in family_hits.items():
+        if hit_count >= 2:
+            total_score += PATTERN_FAMILIES.get(family, {}).get('score_bonus', 2)
     
     # Calculate risk
     if findings:
@@ -439,7 +613,7 @@ def generate_kill_list(results: list, output_file: str = "kill_list.md"):
         print("[*] No danger files to add to kill list")
         return
     
-    kill_list = f"""# DinoScan Kill List 🔴
+    kill_list = f"""# Shield + Dino Kill List 🔴
 
 **Generated:** {datetime.now().isoformat()}
 **Total Dangerous Files:** {len(danger)}
@@ -464,7 +638,7 @@ def generate_kill_list(results: list, output_file: str = "kill_list.md"):
 3. **Block in Scanner**: Add hashes to your blocklist
 
 ---
-*Generated by DinoScan v1 - Share responsibly*
+*Generated by Shield + Dino v1 - Share responsibly*
 """
     
     with open(output_file, 'w', encoding='utf-8') as f:
@@ -507,7 +681,7 @@ def main():
             print_dashboard_header()
     else:
         print(f"\n{'='*60}")
-        print(f"DINOSCAN v1 - Security Scanner")
+        print(f"SHIELD + DINO v1 - Security Scanner")
         print(f"{'='*60}")
     
     results = []
